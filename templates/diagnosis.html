@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Detector</title>
+    <link rel="icon" type="image/x-icon" href="../static/images/kidney-stone.png">
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <!--CUSTOM CSS-->
+    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
+
+</head>
+
+<body>
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../static/images/urology.png" width="50px" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container border rounded mt-3 p-4">
+        <form id="diagnosisForm" enctype="multipart/form-data" method="POST">
+            <div class="row p-3">
+                <!--LEFT START-->
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <!--CARD START-->
+                    <div class="card h-100" style="background-color: rgba(33, 37, 41, 0.03);">
+                        <!--CARD HEADER-->
+                        <div class="card-header">Input Image</div>
+
+                        <!--IMAGE-->
+                        <img src="" id="leftImg" class="card-img-top border border-white border-3" alt="..."
+                            style="visibility: hidden;">
+                        <span class="text-center mb-4" id="defaultMsg1">Selected image will render here.</span>
+
+                        <!--CARD FOOTER START-->
+                        <div class="card-footer h-100">
+                            <input type="file" id="imgInput" name="inputImg" accept="image/*" onchange="displayImage()">
+                            <hr>
+                            <div class="text-center">
+                                <button class="btn btn-outline-primary" type="submit">Diagnose</button>
+                            </div>
+                        </div>
+                        <!--CARD FOOTER START-->
+                    </div>
+                    <!--CARD END-->
+                </div>
+                <!--LEFT END-->
+
+
+                <!--RIGHT START-->
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <!--CARD START-->
+                    <div class="card h-100" style="background-color: rgba(33, 37, 41, 0.03);">
+                        <!--CARD HEADER-->
+                        <div class="card-header">Diagnosis Image</div>
+
+                        <!--IMAGE-->
+                        <img src="" id="imgOutput" class="card-img-top border border-danger border-3" alt="..."
+                            style="visibility: hidden;">
+
+                        <span class="text-center mb-4" id="defaultMsg2">Image diagnosis will render here.</span>
+
+
+                        <!--CARD FOOTER START-->
+                        <div class="card-footer h-100">
+                            <h6 class="m-2">Model Inference</h6>
+                            <hr>
+                            <p id="respArea" class="m-2 model_report"></p>
+                        </div>
+                        <!--CARD FOOTER START-->
+                    </div>
+                    <!--CARD END-->
+                </div>
+                <!--RIGHT END-->
+        </form>
+    </div>
+
+
+    <!--BOOTSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <!--ANIMATOR JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

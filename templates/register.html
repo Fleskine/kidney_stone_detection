@@ -1,0 +1,89 @@
+{% extends 'base_template.html' %}
+
+{% block title %}KSD Registration{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-5">
+            <div class="card">
+                <h5 class="card-header text-center">StoneDet Registration</h5>
+                <div class="card-body">
+                    <!--FORM START-->
+                    <form action="{{ url_for('handleRegistration') }}" method="POST">
+                        <!--FNAME-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="fname">First Name</span>
+                            <input type="text" class="form-control" name="fname" aria-label="fname"
+                                aria-describedby="fname" required>
+                        </div>
+
+                        <!--LNAME-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="lname">Last Name</span>
+                            <input type="text" class="form-control" name="lname" aria-label="lname"
+                                aria-describedby="lname" required>
+                        </div>
+
+                        <!--EMAIL-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="email">Email</span>
+                            <input type="email" class="form-control" name="email" aria-label="email"
+                                aria-describedby="email" required>
+                        </div>
+
+                        <!--PASSWORD-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="email">Password</span>
+                            <input type="password" class="form-control" name="password" aria-label="password"
+                                aria-describedby="password" required>
+                        </div>
+
+                        <!--CONFIRM PASSWORD-->
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="email">Confirm Password</span>
+                            <input type="password" class="form-control" name="password2" aria-label="password2"
+                                aria-describedby="password2" required>
+                        </div>
+
+                        <!--ROLE-->
+                        <div class="input-group mb-4">
+                            <label for="role" class="input-group-text">Role</label>
+                            <select class="form-select" id="role" name="user_role" aria-label="Select role" onchange="setRoleID()" required>
+                                <option selected disabled>Select a role</option>
+                                <option value="doctor">Doctor</option>
+                                <option value="patient">Patient</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <input type="number" id="role_no" name="role_no" hidden/>
+
+                        <button type="submit" class="btn btn-outline-secondary d-block w-100">Register</button>
+                    </form>
+                    <!--FORM END-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function setRoleID(){
+        let role_field = document.getElementById("role");
+        let role_id = document.getElementById("role_no");
+
+        if(role_field.value == "doctor"){
+            role_id.value = 1;
+        }
+        else if(role_field.value == "patient"){
+            role_id.value = 2;
+        }else{
+            role_id.value = 3;
+        }
+        console.log(`${role_id.value}:${role_field.value}`);
+    }
+</script>
+{% endblock %}

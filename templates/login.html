@@ -1,0 +1,51 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Pre-diagnosis Assignment{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-5">
+            <div class="card mt-5">
+                <h5 class="card-header text-center">StoneDet Login</h5>
+                <div class="card-body">
+                    <!--FORM START-->
+                    <form action="{{ url_for('login_user') }}" method="POST">
+                        <!--EMAIL-->
+                        <div class="input-group mb-4">
+                            <span class="input-group-text" id="email">Email</span>
+                            <input type="email" class="form-control" name="email" aria-label="email"
+                                aria-describedby="email" required>
+                        </div>
+
+                        <!--PASSWORD-->
+                        <div class="input-group mb-4">
+                            <span class="input-group-text" id="email">Password</span>
+                            <input type="password" class="form-control" name="password" aria-label="password"
+                                aria-describedby="password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-secondary d-block w-100">Login</button>
+                    </form>
+                    <!--FORM END-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if error %}
+<script>
+    Swal.fire({
+        title: 'Invalid Credentials!',
+        text: 'Email & Password MUST be valid!',
+        icon: 'error',
+        confirmButtonText: 'Retry'
+    });
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base_template.html' %}
+
+{% block title %}KSD Doc{% endblock %}
+
+{% block styling %}
+<!--FONT AWESOME-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<!--TABULATOR JS-->
+<link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/tabulator_bootstrap5.css') }}" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="p-md-2">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light m-3 p-2">
+        <div class="container-fluid">
+            <button id="sidebarCollapse" class="btn btn-primary">
+                <i class="fas fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <h4 class="text-end">Dr. {{ data.doctor_info.fname }}</h4>
+        </div>
+    </nav>
+
+    <!--TABLE-->
+    <div class="container-fluid p-3">
+        <div class="card" style="background-color: rgba(33, 37, 41, 0.03);">
+            <!-- CARD HEADER -->
+            <div class="card-header bg-light">
+                <h2 class="mb-0">Assignees</h2>
+            </div>
+            <div id="imgData" class="border border-2 table-warning"></div>
+        </div>
+        <!--CONTAINER FOR DYNAMIC RENDERING ON MOBILE-->
+        <div id="cardData"></div>
+    </div>
+
+    <!--MODAL FOR DESKTOP-->
+    <div class="modal fade" id="diagnosisModal" tabindex="-1" aria-labelledby="diagnosisModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Model Diagnosis</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dynamicContentContainer">
+                    <!--DYNAMIC CONTENT-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ACCEPT</button>
+                    <button type="button" class="btn btn-primary">REJECT</button>
+                    <button type="button" class="btn btn-success" id="downloadBtn">DOWNLOAD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL FOR MOBILE-->
+    <div class="modal fade" id="diagnosisMobileModal" tabindex="-1" aria-labelledby="diagnosisMobileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="mobileleModalLabel">Model Diagnosis(Mobile)</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dynamicMobileContentContainer">
+                    <!--DYNAMIC CONTENT-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ACCEPT</button>
+                    <button type="button" class="btn btn-primary">REJECT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--SWEET ALERT-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const doc_id = "{{ data.doctor_info.id }}";
+    const login_msg = "{{ data.message }}";
+    
+
+    if(login_msg == "Success"){
+        Swal.fire({
+                title: 'Login Successfull!',
+                text: `Welcome Doc.`,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+    }
+    
+</script>
+
+
+
+<!--SWEET ALERT-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Font Awesome JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+<!--JQuery-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+
+<!--ANIMATOR JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+<!--doc.js-->
+<script src="{{ url_for('static', filename='js/doc.js') }}"></script>
+
+{% endblock %}

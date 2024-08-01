@@ -1,0 +1,65 @@
+{% extends 'base_template.html' %}
+{% block title %}KSD Home{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="{{ url_for('static', filename='images/urology.png') }}" width="40px" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('renderRegistrationForm') }}">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- <div class="container-fluid bg-light">
+  <div class="row">
+    <div class="col-6">
+      <img class="img-fluid" src="{{ url_for('static', filename='images/10607.jpg') }}"/>
+    </div>
+    <div class="col-6 p-5">
+      <h2>KSD Det</h2>
+      <p class="pt-3">Harnessing the robustness of a pretrained model - EfficientDet, Kidney Stone Disease Detector (KSD Det) is an Object Detection Model that automates the diagnosis of kidney stones from X-ray images.</p>
+      <p>KSD Det also provides inference reports, aiding Physicians in understanding the diagnosis results generated.</p>
+      <button class="btn btn-outline-primary mt-3">Get Started</button>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid bg-light">
+  <div class="row m-2 mb-5">
+    <div class="col-md-6 order-md-1">
+      <img class="img-fluid" src="{{ url_for('static', filename='images/10607-removebg-preview.png') }}" />
+    </div>
+    <div class="col-md-6 p-5 order-md-2">
+      <h2>KSD Det</h2>
+      <p class="pt-3">Harnessing the robustness of a pretrained model - EfficientDet, Stone Det is an Object Detection Model that automates the diagnosis of kidney stones from X-ray images.</p>
+      <p>KSD Det also provides inference reports, aiding Physicians in understanding the diagnosis results generated.
+      </p>
+      <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Get Started</a>
+    </div>
+  </div>
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center border-top">
+    <div class="col-md-4 d-flex align-items-center mt-3 text-center">
+      <span>© 2024 StoneDet </span>
+    </div>
+  </footer>
+</div>
+
+
+{% endblock %}

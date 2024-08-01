@@ -1,0 +1,107 @@
+{% extends 'base_template.html' %}
+
+{% block title %}Assignment Page{% endblock %}
+
+<style>
+    img {
+        max-width: 70px;
+    }
+</style>
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-5 mb-5">
+            <div class="card mt-5">
+                <h5 class="card-header text-center">Doctor Assignment</h5>
+                <div class="card-body">
+                    <!--FORM START-->
+                    <form action="{{ url_for('make_assignment') }}" method="POST" enctype="multipart/form-data">
+                        <!--X-RAY UPLOAD-->
+                        <div class="input-group mb-4">
+                            <input type="file" id="fileElem" name="inputImg" accept="image/*" style="display:none;"
+                                multiple>
+
+                            <div id="previewArea" class="m-auto"
+                                style="border: solid gray 2px; border-radius: 2%; width: 96%;">
+                                <h5 class="text-center mt-3 mb-0">Selected image(s) will render here.</h5>
+                                <hr>
+                            </div>
+                            <button type="button" id="fileSelect" class="btn btn-outline-secondary m-2">Upload
+                                X-Ray(s)</button>
+                        </div>
+
+                        <!--DR. SELECTION-->
+                        <div class="input-group mb-4 ml-2">
+                            <select class="form-select" id="doc_assigned" name="doc_assigned" aria-label="Select role" required>
+                                <option selected disabled>Choose a Doctor</option>
+                                {% for doctor in data.doctor_users %}
+                                <option value="{{ doctor.user_id }}">Dr. {{ doctor.fname }} {{ doctor.lname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                     
+                        <button type="submit" class="btn btn-outline-secondary d-block w-100 ml-2">Assign</button>
+                    </form>
+                    <!--FORM END-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const fileSelect = document.getElementById("fileSelect");
+    const fileElem = document.getElementById("fileElem");
+    const previewArea = document.getElementById("previewArea");
+
+    fileSelect.addEventListener(
+        "click",
+        (e) => {
+            if (fileElem) {
+                fileElem.click();
+                //console.log(fileElem);
+            }
+        },
+        false,
+    );
+
+    fileElem.addEventListener("change", (e) => {
+        const form = new FormData();
+        
+        // object of selected files(s)
+        const selectedFileObject = e.target.files;
+        //console.log(selectedFileObject[0]);
+
+        for (let key of Object.keys(selectedFileObject)) {
+            console.log(selectedFileObject[key]);
+            let new_img = document.createElement("img");
+            new_img.src = URL.createObjectURL(selectedFileObject[key]);
+            new_img.style.maxWidth = "98%";
+            new_img.style.width = "90px";
+            new_img.style.height = "70px";
+            new_img.style.objectFit = "contain;"
+            new_img.style.margin = "2px";
+            new_img.style.padding = "5px";
+            previewArea.appendChild(new_img);
+        }
+    });
+</script>
+
+{% if data.success_msg %}
+<script>
+    Swal.fire({
+        title: 'Registration successful!',
+        text: '{{ data.success_msg }}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+    Swal.close();
+</script>
+{% endif %}
+
+
+{% endblock %}
